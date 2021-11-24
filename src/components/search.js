@@ -3,15 +3,19 @@ import axios from 'axios';
 
 
 const Search = () => {
+    // using this useState to get state obj in this component
     const [term, setTerm] = useState('Microsoft')
     const [results, setResults] = useState([]);
 
     console.log(results);
 
     console.log('I run with every render');
+    // this useEffet will be used to trigger whenever the term is changed
     useEffect(() => {
         // console.log('I run with only initial render');
         // console.log('I run with every render useEffect');
+
+
         const searchWiki = async () => {
             const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
                 params: {
@@ -22,14 +26,41 @@ const Search = () => {
                     srsearch: term
                 }
             })
+
+            // updating the results which lives in state obj
             setResults(data.query.search);
         }
-        searchWiki();
+
+        if (term && !results.length) {
+            searchWiki();
+        } else {
+            // added time delay of 500ms while typing
+            const timerId = setTimeout(() => {
+                if (term) {
+                    searchWiki();
+                }
+            }, 500)
+            console.log('every Hit.');
+
+            // this return is uesd to cleanup the methods and service calls
+            // and this will trigger for every render except first render
+            return () => {
+                console.log('Cleanup this.');
+                clearTimeout(timerId);
+            }
+        }
+
     }, [term])
+
+
+
 
     const resultsTobeRendered = results.map((result) => {
         return (
             <div key={result.pageid} className="item">
+                <div className="right floated content">
+                    <a target="_blank" href={`https://en.wikipedia.org?curid=${result.pageid}`} className="ui button" >Go</a>
+                </div>
                 <div className="content">
                     <div className="header" style={{ margin: '25px 0px 10px 0', color: 'red' }}>
                         {result.title}
@@ -40,6 +71,9 @@ const Search = () => {
             </div>
         )
     })
+
+
+
     return (
         <div className="" style={{ width: '500px', margin: '0px auto' }}>
             <div className="ui form">
