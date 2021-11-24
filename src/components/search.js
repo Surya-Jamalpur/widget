@@ -34,7 +34,7 @@ const Search = () => {
                     <div className="header" style={{ margin: '25px 0px 10px 0', color: 'red' }}>
                         {result.title}
                     </div>
-                    {result.snippet}
+                    <span dangerouslySetInnerHTML={{ __html: result.snippet }}></span>
 
                 </div>
             </div>
