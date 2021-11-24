@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 
 const Accordion = ({ items }) => {
     const [activeIndex, setactiveIndex] = useState(null);
-    console.log(activeIndex, setactiveIndex);
-
     const onTitleClick = (index) => {
         setactiveIndex(index)
     }
@@ -24,3 +22,6 @@ const Accordion = ({ items }) => {
 }
 
 export default Accordion;
+
+
+
