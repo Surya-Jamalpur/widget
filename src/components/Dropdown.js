@@ -2,6 +2,9 @@ import React from 'react';
 
 const Dropdown = ({ colorOptions, selected, onSelectedChange }) => {
     const optionsToRender = colorOptions.map((color) => {
+        if (color.value === selected.value) {
+            return null;
+        }
         return (
             <div onClick={() => onSelectedChange(color)} className="item" key={color.lable} >
                 {color.lable}
