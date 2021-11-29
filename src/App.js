@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Accordion from './components/Accordion';
 import Search from './components/search';
 import Dropdown from './components/Dropdown';
+import DropdownPractice from './components/DropdownPractice';
 const faqs = [
   {
     title: 'what is React?',
@@ -40,11 +41,21 @@ const colors = [
 ]
 const App = () => {
   const [selected, setSelected] = useState(colors[0]);
+  const [showDD, setShowDD] = useState(true);
   return (
     // <Accordion items={faqs} />
     // <Search />
-    <Dropdown colorOptions={colors} selected={selected} onSelectedChange={setSelected} />
-
+    // <Dropdown colorOptions={colors} selected={selected} onSelectedChange={setSelected} />
+    <div>
+      <button onClick={() => setShowDD(!showDD)}>Toggle DD</button>
+      {showDD ?
+        <DropdownPractice
+          colorOptions={colors}
+          selected={selected}
+          onSelectedChange={setSelected}
+        /> : null
+      }
+    </div>
   )
 }
 export default App;
