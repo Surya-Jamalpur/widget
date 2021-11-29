@@ -11,7 +11,7 @@ const DropdownPractice = (props) => {
             setOpen(false);
         };
         document.body.addEventListener('click', onBodyClick);
-
+        // this return is a cleanup block of the useEffect
         return () => {
             document.body.removeEventListener('click', onBodyClick);
         }
