@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const Dropdown = ({ colorOptions, selected, onSelectedChange }) => {
+const Dropdown = ({ options, selected, onSelectedChange }) => {
     const [open, setOpen] = useState(false);
     const ref = useRef();
     useEffect(() => {
@@ -12,16 +12,16 @@ const Dropdown = ({ colorOptions, selected, onSelectedChange }) => {
             setOpen(false);
         })
     }, [])
-    const optionsToRender = colorOptions.map((color) => {
-        if (color.value === selected.value) {
+    const optionsToRender = options.map((option) => {
+        if (option.value === selected.value) {
             return null;
         }
         return (
             <div onClick={() => {
                 console.log('clicked item..');
-                onSelectedChange(color)
-            }} className="item" key={color.lable} >
-                {color.lable}
+                onSelectedChange(option)
+            }} className="item" key={option.lable} >
+                {option.lable}
             </div>
         )
     })
@@ -30,7 +30,7 @@ const Dropdown = ({ colorOptions, selected, onSelectedChange }) => {
 
             <div className="ui form">
                 <div className="field">
-                    <label className="label">Select a Color</label>
+                    <label className="label">Select a option</label>
                     <div onClick={() => {
                         console.log('clicked Dropdown..');
                         setOpen(!open)

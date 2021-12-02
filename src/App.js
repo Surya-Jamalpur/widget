@@ -3,6 +3,7 @@ import Accordion from './components/Accordion';
 import Search from './components/search';
 import Dropdown from './components/Dropdown';
 import DropdownPractice from './components/DropdownPractice';
+import Translate from './components/translate';
 const faqs = [
   {
     title: 'what is React?',
@@ -45,16 +46,17 @@ const App = () => {
   return (
     // <Accordion items={faqs} />
     // <Search />
-    // <Dropdown colorOptions={colors} selected={selected} onSelectedChange={setSelected} />
     <div>
-      <button onClick={() => setShowDD(!showDD)}>Toggle DD</button>
+      <Dropdown options={colors} selected={selected} onSelectedChange={setSelected} />
+      {/* <button onClick={() => setShowDD(!showDD)}>Toggle DD</button>
       {showDD ?
         <DropdownPractice
           colorOptions={colors}
           selected={selected}
           onSelectedChange={setSelected}
         /> : null
-      }
+      } */}
+      <Translate />
     </div>
   )
 }
