@@ -56,7 +56,7 @@ const App = () => {
           onSelectedChange={setSelected}
         /> : null
       } */}
-      <Translate />
+      <Translate selectedColor={selected} />
     </div>
   )
 }

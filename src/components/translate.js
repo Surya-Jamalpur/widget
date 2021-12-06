@@ -14,11 +14,15 @@ const languages = [
         value: 'hi'
     },
     {
+        lable: 'Telugu',
+        value: 'te'
+    },
+    {
         lable: 'Arabic',
         value: 'ar'
     }
 ]
-const Translate = () => {
+const Translate = ({ selectedColor }) => {
     const [language, setLanguage] = useState(languages[0]);
     const [inputVal, setInputVal] = useState('');
 
@@ -39,7 +43,7 @@ const Translate = () => {
 
             <Dropdown options={languages} selected={language} onSelectedChange={setLanguage} />
             <hr />
-            <Convert text={inputVal} lang={language} />
+            <Convert text={inputVal} lang={language} textColor={selectedColor} />
         </div>
     )
 

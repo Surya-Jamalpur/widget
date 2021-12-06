@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Convert = ({ lang, text }) => {
+const Convert = ({ lang, text, textColor }) => {
     const [convertedText, setconvertedText] = useState('');
     useEffect(() => {
         const doTranslation = async () => {
@@ -14,13 +14,26 @@ const Convert = ({ lang, text }) => {
             });
             setconvertedText(data.data.translations[0].translatedText)
         }
-        doTranslation()
+        if (text && convertedText == '') {
+            doTranslation()
+        } else {
+            const timer = setTimeout(() => {
+                if (text) {
+                    doTranslation()
+                }
+            }, 500);
+            return () => {
+                clearTimeout(timer)
+            }
+        }
+
     }, [text, lang])
 
     return (
         <div>
             <h3>converted</h3>
-            <span>{convertedText}</span>
+            <span style={{ color: textColor.value }}
+            >{convertedText}</span>
         </div>
     )
 }
