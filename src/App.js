@@ -4,6 +4,8 @@ import Search from './components/search';
 import Dropdown from './components/Dropdown';
 import DropdownPractice from './components/DropdownPractice';
 import Translate from './components/translate';
+
+import Route from './components/route';
 const faqs = [
   {
     title: 'what is React?',
@@ -43,20 +45,74 @@ const colors = [
 const App = () => {
   const [selected, setSelected] = useState(colors[0]);
   const [showDD, setShowDD] = useState(true);
+
+  // const showAccordian = ()=>{
+  //   if(window.location.)
+  // }
+  const showAccordian = () => {
+    if (window.location.pathname === '/') {
+      return <Accordion items={faqs} />
+    }
+  }
+  const showSearch = () => {
+    if (window.location.pathname === '/search') {
+      return <Search />
+    }
+  }
+  const showDropD = () => {
+    if (window.location.pathname === '/dropdown') {
+      return <Dropdown options={colors} selected={selected} onSelectedChange={setSelected} />
+    }
+  }
+  const showTranslate = () => {
+    if (window.location.pathname === '/translate') {
+      return <Translate selectedColor={selected} />
+    }
+  }
+
   return (
-    // <Accordion items={faqs} />
-    // <Search />
+
+    // <div>
+    //   {showAccordian()}
+    //   {/* {window.location.pathname === '/' ?
+    //     <Accordion items={faqs} /> : null} */}
+    //   {showSearch()}
+
+    //   {/* {window.location.pathname === '/search' ?
+    //     <Search /> : null} */}
+    //   {showDropD()}
+
+    //   {/* {window.location.pathname === '/dropdown' ?
+    //     <Dropdown options={colors} selected={selected} onSelectedChange={setSelected} /> : null} */}
+    //   {/* {window.location.pathname === '/ddPractice' ?
+    //     <button onClick={() => setShowDD(!showDD)}>Toggle DD</button> : null}
+    //   {showDD ?
+    //     <DropdownPractice
+    //       colorOptions={colors}
+    //       selected={selected}
+    //       onSelectedChange={setSelected}
+    //     /> : null
+    //   } */}
+    //   {showTranslate()}
+
+    //   {/* {window.location.pathname === '/translate' ?
+    //     <Translate selectedColor={selected} /> : null} */}
+    // </div>
+
+    // this is by using route.js and not react router
     <div>
-      <Dropdown options={colors} selected={selected} onSelectedChange={setSelected} />
-      {/* <button onClick={() => setShowDD(!showDD)}>Toggle DD</button>
-      {showDD ?
-        <DropdownPractice
-          colorOptions={colors}
-          selected={selected}
-          onSelectedChange={setSelected}
-        /> : null
-      } */}
-      <Translate selectedColor={selected} />
+      <Route path='/'>
+        <Accordion items={faqs} />
+      </Route>
+      <Route path='/search'>
+        <Search />
+      </Route>
+      <Route path='/dropdown'>
+        <Dropdown options={colors} selected={selected} onSelectedChange={setSelected} />
+      </Route>
+      <Route path='/translate'>
+        <Translate selectedColor={selected} />
+      </Route>
     </div>
   )
 }
