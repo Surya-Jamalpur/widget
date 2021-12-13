@@ -4,6 +4,7 @@ import Search from './components/search';
 import Dropdown from './components/Dropdown';
 import DropdownPractice from './components/DropdownPractice';
 import Translate from './components/translate';
+import Header from './components/Header';
 
 import Route from './components/route';
 const faqs = [
@@ -49,26 +50,26 @@ const App = () => {
   // const showAccordian = ()=>{
   //   if(window.location.)
   // }
-  const showAccordian = () => {
-    if (window.location.pathname === '/') {
-      return <Accordion items={faqs} />
-    }
-  }
-  const showSearch = () => {
-    if (window.location.pathname === '/search') {
-      return <Search />
-    }
-  }
-  const showDropD = () => {
-    if (window.location.pathname === '/dropdown') {
-      return <Dropdown options={colors} selected={selected} onSelectedChange={setSelected} />
-    }
-  }
-  const showTranslate = () => {
-    if (window.location.pathname === '/translate') {
-      return <Translate selectedColor={selected} />
-    }
-  }
+  // const showAccordian = () => {
+  //   if (window.location.pathname === '/') {
+  //     return <Accordion items={faqs} />
+  //   }
+  // }
+  // const showSearch = () => {
+  //   if (window.location.pathname === '/search') {
+  //     return <Search />
+  //   }
+  // }
+  // const showDropD = () => {
+  //   if (window.location.pathname === '/dropdown') {
+  //     return <Dropdown options={colors} selected={selected} onSelectedChange={setSelected} />
+  //   }
+  // }
+  // const showTranslate = () => {
+  //   if (window.location.pathname === '/translate') {
+  //     return <Translate selectedColor={selected} />
+  //   }
+  // }
 
   return (
 
@@ -101,6 +102,7 @@ const App = () => {
 
     // this is by using route.js and not react router
     <div>
+      <Header />
       <Route path='/'>
         <Accordion items={faqs} />
       </Route>
