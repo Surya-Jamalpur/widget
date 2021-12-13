@@ -1,13 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-const windowPath = window.location.pathname;
+// const windowPath = window.location.pathname;
 
-const onLocationChange = () => {
-    console.log('Hey.. the location changed');
-}
+
 const Route = ({ path, children }) => {
+    const [windowPath, setwindowPath] = useState(window.location.pathname);
     useEffect(() => {
-        window.addEventListener('popState', onLocationChange)
+        const onLocationChange = () => {
+            console.log('Hey.. the location changed');
+            setwindowPath(window.location.pathname);
+        }
+        window.addEventListener('popState', onLocationChange);
+
+        return () => {
+            window.removeEventListener('popState', onLocationChange);
+        }
     }, [])
     return windowPath === path ? children : null
 }
